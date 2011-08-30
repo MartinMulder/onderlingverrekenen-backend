@@ -1,6 +1,7 @@
 package nl.onderlingverrekenen.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,10 +9,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Entity
+@Table(name="Bank")
 public class Bank {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
+
 	
 	public Bank() {
 		super();
@@ -23,8 +28,10 @@ public class Bank {
 		this.name = name;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
+	/**
+	 * Getters / Setters
+	 **/ 
 	public int getId() {
 		return id;
 	}

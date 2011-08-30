@@ -1,6 +1,8 @@
 package nl.onderlingverrekenen.model;
 
 import javax.persistence.entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
 import javax.persistence.generatedvalue;
 import javax.persistence.generationtype;
 import javax.persistence.id;
@@ -8,9 +10,15 @@ import javax.xml.bind.annotation.xmlrootelement;
 
 @XmlRootElement
 @Entity
+@Table(name="Rekening")
 public class Rekening {
 	
 	private int id;
+
+	@Column(updatable="false", 
+		unique="true", 
+		nullable="false", 
+		length="20")
 	private String rekeningNr;
 	private Date aanmaakDatum;
 	private Bank bank;
@@ -51,6 +59,8 @@ public class Rekening {
 		this.aanmaakDatum = aanmaakDatum;
 	}
 	
+	@ManyToOne
+	@JoinColumn(name="bank_id")
 	public Bank getBank() {
 		return bank;
 	}
